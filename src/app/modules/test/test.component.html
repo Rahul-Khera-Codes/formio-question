@@ -1,0 +1,15 @@
+<div class="container-fluid bg-dark">
+    <h3 class="text-white text-center py-2">Lazy Loaded</h3>
+    <p>
+        <button (click)="builder = !builder" type="button" class="btn btn-secondary">
+            Toggle Builder
+        </button>
+    </p>
+
+    <div *ngIf="builder">
+        <form-builder [form]="form" (change)="onChange($event)"></form-builder>
+    </div>
+    <div *ngIf="!builder">
+        <formio [form]="form" (change)="onChange($event)"></formio>
+    </div>
+</div>
