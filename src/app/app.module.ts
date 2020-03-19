@@ -6,6 +6,7 @@ import { FormioModule } from 'angular-formio';
 import { AppComponent } from './app.component';
 import { RatingWrapperComponent } from './rating-wrapper/rating-wrapper.component';
 import { registerRatingComponent } from './rating-wrapper/rating-wrapper.formio';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,18 @@ import { registerRatingComponent } from './rating-wrapper/rating-wrapper.formio'
     BrowserModule,
     FormsModule,
     NgbModule,
-    FormioModule
+    FormioModule,
+    RouterModule.forRoot([
+      {
+        path: "",
+        redirectTo: "test",
+        pathMatch: "full"
+      },
+      {
+        path: "test",
+        loadChildren: () => import("./modules/test/test.module").then(m => m.TestModule)
+      }
+    ])
   ],
   entryComponents: [RatingWrapperComponent],
   bootstrap: [AppComponent]
@@ -26,3 +38,4 @@ export class AppModule {
     registerRatingComponent(injector);
   }
 }
+
